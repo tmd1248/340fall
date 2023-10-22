@@ -6,10 +6,10 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  let list = "<ul>"
-  list += '<li><a href="/" title="Home page">Home</a></li>'
+  let list = "<ul id=\"navigation\">"
+  list += '<li class=\"navlist\"><a href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
-    list += "<li>"
+    list += "<li class=\"navlist\">"
     list +=
       '<a href="/inv/type/' +
       row.classification_id +
@@ -56,5 +56,49 @@ Util.buildClassificationGrid = async function(data){
     }
     return grid
   }
+
+  Util.buildDetailGrid = async function(data){
+    let grid
+    if(data.length > 0){
+      grid = '<ul id="inv-display">'
+      data.forEach(vehicle => { 
+        grid += '<li>'
+        grid += '<h2>'
+        grid += vehicle.inv_year
+        grid += '</h2>'
+        grid +=  '<img src="' + vehicle.inv_image 
+        +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+        +' on CSE Motors" />'
+        grid += '<div class="namePrice">'
+        grid += '<hr />'
+        grid += '<p>'
+        grid += vehicle.inv_description
+        grid += '</p>'
+        grid += '<span>$' 
+        + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+        grid += '<span>' 
+        grid += '<p>'
+        + new Intl.NumberFormat('en-US', {style: 'decimal'}).format(vehicle.inv_miles) + '</span>'
+        grid += ' Miles'
+        grid += '</p>'
+        grid += '<p> Color: '
+        grid += vehicle.inv_color
+        grid += '</p>'
+        grid += '</div>'
+        grid += '</li>'
+      })
+      grid += '</ul>'
+    } else { 
+      grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+    return grid
+  }
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util
