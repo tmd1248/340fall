@@ -1,6 +1,66 @@
 /******* Change Box Model ***************/
-*,
+* 
 *:before,
 *:after {
   box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color:black;
+}
+.siteName{
+  font-size: 64pt;
+  background-color: slategray;
+}
+.siteName:hover {
+  box-shadow: 10px 5px 5px black;
+}
+#tools {
+  float:right;
+  font-size: 32pt;
+}
+#navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: slategray;
+}
+.navlist {
+  display: block;
+  flex: 0 1 100%; 
+  list-style-type: none;
+}
+.mainDiv {
+  display:flex;
+}
+.deloreanDiv {
+  display:block;
+  flex: 0 1 100%;
+  margin: 50px;
+}
+.reviews {
+  font-size:20px;
+}
+.advertisement {
+  color:rgb(3, 212, 212);
+  font-size: 14pt;
+  position:relative;
+}
+.AdvertisementText {
+  position:absolute;
+  top: 8px;
+  left: 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.upgrades {
+  min-height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.upgrades > div {
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
 }
