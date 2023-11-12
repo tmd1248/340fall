@@ -1,0 +1,22 @@
+<%# content heading %>
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<form action="/inventory/add-classification" method="post" id="management_form">
+    <input type="text" id="classname" name="classification_name" placeholder="Classification name" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="submit" value="Add Classification">
+  </form>

@@ -1,0 +1,28 @@
+<%# content heading %>
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<form action="/inventory/add-inventory" method="post" id="management_form">
+    <input type="text" id="inv_make" name="inv_make" placeholder="inv_make" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_model" name="inv_model" placeholder="inv_model" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_year" name="inv_year" placeholder="inv_year" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_description" name="inv_description" placeholder="inv_description" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_price" name="inv_price" placeholder="inv_price" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_miles" name="inv_miles" placeholder="inv_miles" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="text" id="inv_color" name="inv_color" placeholder="inv_color" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>"><br><br>
+    <input type="submit" value="Add inventory">
+  </form>

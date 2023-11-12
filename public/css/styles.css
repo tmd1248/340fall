@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 a {
-  text-decoration: none;
   color:black;
 }
 .siteName{
@@ -63,4 +62,14 @@ a {
   flex-basis: calc(50% - 40px);  
   justify-content: center;
   flex-direction: column;
+}
+#account_form {
+  background-color: slategray;
+  max-width: 250px;
+  padding: 10px;
+}
+#management_form {
+  background-color: slategray;
+  max-width: 250px;
+  padding: 10px;
 }
